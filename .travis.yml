@@ -1,0 +1,40 @@
+language: go
+go_import_path: github.com/ethereumprogpow/ethereumprogpow
+sudo: false
+matrix:
+  include:
+    # These are the latest Go versions.
+    - os: linux
+      dist: trusty
+      sudo: required
+      go: 1.11.x
+      script:
+        - sudo modprobe fuse
+        - sudo chmod 666 /dev/fuse
+        - sudo chown root:$USER /etc/fuse.conf
+        - go run build/ci.go install
+      before_deploy:
+        - sh build/deploy.sh
+      deploy:
+        provider: releases
+        api_key:
+          secure: cSv8iuHU4yVmMnMTAh9xNW6IGBuCp7SRW90z8FDGslxYtcrLfReRnV8+iES0ppREC4EJVh5f4Vzaj4WmAaRrg3MMOjrGTShrzrQSOdlIBPzgCBb7fHbK5osEp/WhasvNh3Qtolzp/ifBiZmIQlKt5Dt4xfYJBH1+Xgk3iUy6D+u6s6bsNz6a/ZiJNt+X+fzqIWZMaDpOJbaMqZX94tRjJT8o87LwMZ2BxCGfixh4EXI8hFZxcNieDqQrz3GbtXmjbDn4Ybrez0X4haS4CjYoVw6eAJ39WHgMId6//qLxZTPsl/UNDPgMNR1R+TEGQVkv8/sxms6EaId+H0nvTDxdWS9Ik5BriH252MgtW5mVyPQ6ZHcvSgOCOuRbrZUC4BvJQq57HFrQmeJNnoStGyzwsyf9LhM0eTYwGUmwraHjHSPk0rt5cJyY7EMrIr7HG6ZqFrS8fSQUOSQUhLFBepjzDiaLUTyCt5+giOXC1iDNANLgLsj28jRTOtnon09qjGO4CgP3LX7h3FGpATU1Dv4NJ94SJcb1TDyY6h7CB6J6mH6FLbUs+aNxOjj7T9WKPJz/d3iEW3WWZ2kE8dvCVF6FzhJAqgmfttoaUNF9lOZafFebipes+Iizjpd3/rAQRSZnV+0UqidC9uQqxF+IFvfmnkzQcaTdnQjrD9BOoOhDNnI=
+        file: ethereumprogpow-$TRAVIS_OS_NAME.*
+        file_glob: true
+        draft: true
+        on:
+          repo: ethereumprogpow/ethereumprogpow
+          tags: true
+        skip_cleanup: true
+        tag_name: "$TRAVIS_TAG"
+
+    # This builder only tests code linters on latest version of Go
+    - os: linux
+      dist: trusty
+      go: 1.11.x
+      env:
+        - lint
+      git:
+        submodules: false # avoid cloning ethereum/tests
+      script:
+        - go run build/ci.go lint
