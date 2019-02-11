@@ -7,6 +7,10 @@
 
 Ethereum ProgPoW, an ethereum node client created for miners and decentralized network
 
+## What is Ethereum ProgPoW?
+
+[Ethereum ProgPoW](https://ethereumprogpow.com) is an alternative ethereum node software to provide miner’s voting tool for secure, decentralized network against potential ASIC threat. By adopting ProgPoW, a Programmatic Proof-of-Work extension for Ethash algorithm, Ethereum ProgPoW can fulfill its vision to support sustainable, scalable network operation under transparent open source development.
+
 ## Building the source
 
 Building geth requires both a Go (version 1.9 or later) and a C compiler. (For ubuntu install build-essential and golang-1.10-go from apt package manager)
