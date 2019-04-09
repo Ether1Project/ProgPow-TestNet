@@ -57,11 +57,11 @@ func DefaultDataDir() string {
 	home := homeDir()
 	if home != "" {
 		if runtime.GOOS == "darwin" {
-			return filepath.Join(home, "Library", "proeth")
+			return filepath.Join(home, "Library", "Ether-1-ProgPow")
 		} else if runtime.GOOS == "windows" {
-			return filepath.Join(home, "AppData", "Roaming", "proeth")
+			return filepath.Join(home, "AppData", "Roaming", "Ether-1-ProgPow")
 		} else {
-			return filepath.Join(home, ".proeth")
+			return filepath.Join(home, ".Ether-1-ProgPow")
 		}
 	}
 	// As we cannot guess a stable location, return empty and handle later
