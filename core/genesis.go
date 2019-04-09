@@ -348,7 +348,7 @@ func DefaultGangnamGenesisBlock() *Genesis {
 		Timestamp:  1544523374,
 		ExtraData:  hexutil.MustDecode("0x0000000000000000000000000000000000000000000000000000000000000000"),
 		GasLimit:   4700000,
-		Difficulty: big.NewInt(524288),
+		Difficulty: big.NewInt(3000),
 		Alloc:      decodePrealloc(gangnamAllocData),
 	}
 }

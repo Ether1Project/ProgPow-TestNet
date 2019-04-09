@@ -113,7 +113,7 @@ var (
 
 	// GangnamChainConfig contains the chain parameters to run a node on the Gangnam test network.
 	GangnamChainConfig = &ChainConfig{
-		ChainID:             big.NewInt(43568),
+		ChainID:             big.NewInt(43588),
 		HomesteadBlock:      big.NewInt(1),
 		DAOForkBlock:        nil,
 		DAOForkSupport:      true,
